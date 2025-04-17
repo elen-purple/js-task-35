@@ -160,11 +160,11 @@
       });
     }
   }
-})({"g80tA":[function(require,module,exports,__globalThis) {
+})({"aNPav":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 55727;
+var HMR_SERVER_PORT = 57465;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -772,7 +772,8 @@ document.querySelector("#change-form").addEventListener("submit", (e)=>{
     studentItem.children[1].textContent = document.querySelector("#change-name").value;
     studentItem.children[2].textContent = document.querySelector("#change-age").value;
     studentItem.children[3].textContent = document.querySelector("#change-course").value;
-    studentItem.children[4].textContent = document.querySelector("#change-skills").value;
+    const skills = document.querySelector("#change-skills").value.split(",").map((skill)=>`<li>${skill.trim()}</li>`).join("");
+    studentItem.children[4].firstElementChild.innerHTML = skills;
     studentItem.children[5].textContent = document.querySelector("#change-email").value;
     studentItem.children[6].textContent = student.isEnrolled ? "\u0417\u0430\u043F\u0438\u0441\u0430\u043D\u0438\u0439" : "\u041D\u0435 \u0437\u0430\u043F\u0438\u0441\u0430\u043D\u0438\u0439";
     document.querySelector("#change").classList.add("is-hidden");
@@ -823,6 +824,6 @@ document.querySelector("tbody").addEventListener("click", (e)=>{
  // таблиці додати кнопку "Видалити". При натисканні на цю кнопку, виконати
  // HTTP-запит DELETE /students/:id.
 
-},{}]},["g80tA","a0t4e"], "a0t4e", "parcelRequired62e", {})
+},{}]},["aNPav","a0t4e"], "a0t4e", "parcelRequired62e", {})
 
 //# sourceMappingURL=js-task-35.31b563d9.js.map
