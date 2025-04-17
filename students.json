@@ -1,0 +1,82 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "Ivan Petrenko",
+      "course": "Web Development",
+      "age": "15",
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "email": "ivan.petrenko@example.com",
+      "isEnrolled": true
+    },
+    {
+      "id": "2",
+      "name": "Olha Kovalenko",
+      "age": 16,
+      "course": "Game Development",
+      "skills": [
+        "C#",
+        "Unity"
+      ],
+      "email": "olha.kovalenko@example.com",
+      "isEnrolled": true
+    },
+    {
+      "id": "3",
+      "name": "Dmytro Shevchenko",
+      "course": "Mobile App Development",
+      "age": "14",
+      "skills": [
+        "Java",
+        "Kotlin",
+        "Android Studio"
+      ],
+      "email": "dmytro.shevchenko@example.com",
+      "isEnrolled": true
+    },
+    {
+      "id": "4",
+      "name": "Anastasia Ivanova",
+      "course": "Data Science",
+      "age": "17",
+      "skills": [
+        "Python",
+        "Pandas",
+        "Machine Learning"
+      ],
+      "email": "anastasia.ivanova@example.com",
+      "isEnrolled": false
+    },
+    {
+      "id": "5",
+      "name": "Mykola Bondarenko",
+      "course": "Cybersecurity",
+      "age": "15",
+      "skills": [
+        "Networking",
+        "Ethical Hacking",
+        "Linux"
+      ],
+      "email": "mykola.bondarenko@example.com",
+      "isEnrolled": false
+    },
+    {
+      "id": "7de9",
+      "name": "Гаврилова Анна",
+      "course": "sww",
+      "age": "32",
+      "skills": [
+        "www",
+        "eee",
+        "rrrw",
+        "3w"
+      ],
+      "email": "elen.purple@gmail.com",
+      "isEnrolled": true
+    }
+  ]
+}
