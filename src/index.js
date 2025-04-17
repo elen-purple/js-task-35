@@ -137,8 +137,12 @@ document.querySelector("#change-form").addEventListener("submit", (e) => {
     document.querySelector("#change-age").value;
   studentItem.children[3].textContent =
     document.querySelector("#change-course").value;
-  studentItem.children[4].textContent =
-    document.querySelector("#change-skills").value;
+  const skills = document
+    .querySelector("#change-skills")
+    .value.split(",")
+    .map((skill) => `<li>${skill.trim()}</li>`)
+    .join("");
+  studentItem.children[4].firstElementChild.innerHTML = skills;
   studentItem.children[5].textContent =
     document.querySelector("#change-email").value;
   studentItem.children[6].textContent = student.isEnrolled
