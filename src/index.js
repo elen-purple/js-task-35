@@ -1,7 +1,11 @@
-function getStudents() {
-  return fetch("http://localhost:3000/students").then((reponse) =>
-    reponse.json()
-  );
+async function getStudents() {
+  try {
+    return await fetch("http://localhost:3000/students").then((reponse) =>
+      reponse.json()
+    );
+  } catch (e) {
+    return e;
+  }
 }
 
 function renderStudents(students) {
@@ -30,7 +34,7 @@ function renderStudents(students) {
   });
 }
 
-function addStudent(e) {
+async function addStudent(e) {
   e.preventDefault();
   const student = {
     name: document.querySelector("#name").value,
@@ -48,35 +52,29 @@ function addStudent(e) {
   document.querySelector("#age").value = "";
   document.querySelector("#skills").value = "";
   document.querySelector("#email").value = "";
-  fetch("http://localhost:3000/students", {
-    method: "POST",
-    body: JSON.stringify(student),
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
-  });
-  setTimeout(() => {
-    getStudents().then((students) => {
-      renderStudents(students);
+  try {
+    await fetch("http://localhost:3000/students", {
+      method: "POST",
+      body: JSON.stringify(student),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
     });
-  }, 100);
-}
-
-// Функція для оновлення студента
-function updateStudent(id) {
-  // твій код
-}
-
-// Функція для видалення студента
-function deleteStudent(id) {
-  // твій код
-}
-
-document.querySelector("#get-students-btn").addEventListener("click", () => {
-  getStudents().then((students) => {
+  } catch (e) {
+    return e;
+  }
+  await getStudents().then((students) => {
     renderStudents(students);
   });
-});
+}
+
+document
+  .querySelector("#get-students-btn")
+  .addEventListener("click", async () => {
+    await getStudents().then((students) => {
+      renderStudents(students);
+    });
+  });
 
 document.querySelectorAll(`input[type="checkbox"]`).forEach((item) => {
   item.addEventListener("click", (e) => {
@@ -90,13 +88,13 @@ document
 
 let changedUserId = "";
 
-document.querySelector("tbody").addEventListener("click", (e) => {
+document.querySelector("tbody").addEventListener("click", async (e) => {
   if (e.target.classList.contains("change-btn")) {
     document.querySelector("#change").classList.remove("is-hidden");
     document.querySelector("body").classList.add("no-scroll");
     const studentId =
       e.target.parentElement.parentElement.firstElementChild.textContent;
-    getStudents().then((students) => {
+    await getStudents().then((students) => {
       const student = students.find((student) => student.id === studentId);
       changedUserId = student.id;
       document.querySelector("#change-name").value = student.name;
@@ -114,7 +112,7 @@ document.querySelector("tbody").addEventListener("click", (e) => {
   }
 });
 
-document.querySelector("#change-form").addEventListener("submit", (e) => {
+document.querySelector("#change-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const student = {
     id: changedUserId,
@@ -130,24 +128,6 @@ document.querySelector("#change-form").addEventListener("submit", (e) => {
       .querySelector("#change-isEnrolled")
       .hasAttribute("checked"),
   };
-  const studentItem = document.querySelector(`#id-${changedUserId}`);
-  studentItem.children[1].textContent =
-    document.querySelector("#change-name").value;
-  studentItem.children[2].textContent =
-    document.querySelector("#change-age").value;
-  studentItem.children[3].textContent =
-    document.querySelector("#change-course").value;
-  const skills = document
-    .querySelector("#change-skills")
-    .value.split(",")
-    .map((skill) => `<li>${skill.trim()}</li>`)
-    .join("");
-  studentItem.children[4].firstElementChild.innerHTML = skills;
-  studentItem.children[5].textContent =
-    document.querySelector("#change-email").value;
-  studentItem.children[6].textContent = student.isEnrolled
-    ? "Записаний"
-    : "Не записаний";
   document.querySelector("#change").classList.add("is-hidden");
   document.querySelector("body").classList.remove("no-scroll");
   document.querySelector("#change-name").value = "";
@@ -155,56 +135,35 @@ document.querySelector("#change-form").addEventListener("submit", (e) => {
   document.querySelector("#change-age").value = "";
   document.querySelector("#change-skills").value = "";
   document.querySelector("#change-email").value = "";
-  fetch(`http://localhost:3000/students/${changedUserId}`, {
-    method: "PUT",
-    body: JSON.stringify(student),
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-    },
+  try {
+    await fetch(`http://localhost:3000/students/${changedUserId}`, {
+      method: "PUT",
+      body: JSON.stringify(student),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+    });
+  } catch (e) {
+    return e;
+  }
+  await getStudents().then((students) => {
+    renderStudents(students);
   });
 });
 
-document.querySelector("tbody").addEventListener("click", (e) => {
+document.querySelector("tbody").addEventListener("click", async (e) => {
   if (e.target.classList.contains("delete-btn")) {
     const studentId =
       e.target.parentElement.parentElement.firstElementChild.textContent;
-    document.querySelector(`#id-${studentId}`).remove();
-    fetch(`http://localhost:3000/students/${studentId}`, {
-      method: "DELETE",
+    try {
+      await fetch(`http://localhost:3000/students/${studentId}`, {
+        method: "DELETE",
+      });
+    } catch (e) {
+      return e;
+    }
+    await getStudents().then((students) => {
+      renderStudents(students);
     });
   }
 });
-
-// 1. Реалізуйте функцію getStudents для отримання списку всіх студентів
-// (HTTP GET /students) getStudents
-
-// 2. Реалізуйте функцію addStudent для додавання нового студента (HTTP
-// POST /students)
-
-// 3. Реалізуйте функцію updateStudent  для часткового оновлення студента
-// (HTTP PATCH /students/{id})
-
-// 4. Реалізуйте функцію  для deleteStudent видалення студента за його
-// ідентифікатором (HTTP DELETE /students/{id})
-
-// 7. Написати JavaScript-код для обробки подій користувача.
-
-// 7.1. Додати обробники подій для кнопок, щоб вони виконували відповідні
-// HTTP-запити.
-
-// 7.2. При натисканні на кнопку "Отримати студентів" (GET), виконати
-// HTTP-запит GET /students і відобразити отримані дані в таблиці.
-
-// 7.3. Реалізувати форму для додавання нового студента. При натисканні
-// на кнопку "Додати студента" (POST), зібрати дані з полів вводу,
-// сформувати об'єкт з даними  і виконати HTTP-запит POST /students, щоб
-// додати нового студента до бази даних.
-
-// 7.4. Реалізувати можливість оновлення інформації про студента.
-// Для кожного студента в таблиці додати кнопку "Оновити". При натисканні
-// на цю кнопку, виконати HTTP-запит PUT /students/:id, де :id —
-// ідентифікатор фільму, і відправити оновлені дані про студента на сервер.
-
-// 7.5. Додати можливість видалення студента. Для кожного студента в
-// таблиці додати кнопку "Видалити". При натисканні на цю кнопку, виконати
-// HTTP-запит DELETE /students/:id.
