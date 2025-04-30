@@ -669,7 +669,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"a0t4e":[function(require,module,exports,__globalThis) {
 async function getStudents() {
     try {
-        return await fetch("http://localhost:3000/students").then((reponse)=>reponse.json());
+        return await fetch("https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students").then((reponse)=>reponse.json());
     } catch (e) {
         return e;
     }
@@ -712,7 +712,7 @@ async function addStudent(e) {
     document.querySelector("#skills").value = "";
     document.querySelector("#email").value = "";
     try {
-        await fetch("http://localhost:3000/students", {
+        await fetch("https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students", {
             method: "POST",
             body: JSON.stringify(student),
             headers: {
@@ -728,6 +728,7 @@ async function addStudent(e) {
 }
 document.querySelector("#get-students-btn").addEventListener("click", async ()=>{
     await getStudents().then((students)=>{
+        console.log(students);
         renderStudents(students);
     });
 });
@@ -774,7 +775,7 @@ document.querySelector("#change-form").addEventListener("submit", async (e)=>{
     document.querySelector("#change-skills").value = "";
     document.querySelector("#change-email").value = "";
     try {
-        await fetch(`http://localhost:3000/students/${changedUserId}`, {
+        await fetch(`https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students/${changedUserId}`, {
             method: "PUT",
             body: JSON.stringify(student),
             headers: {
@@ -792,7 +793,7 @@ document.querySelector("tbody").addEventListener("click", async (e)=>{
     if (e.target.classList.contains("delete-btn")) {
         const studentId = e.target.parentElement.parentElement.firstElementChild.textContent;
         try {
-            await fetch(`http://localhost:3000/students/${studentId}`, {
+            await fetch(`https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students/${studentId}`, {
                 method: "DELETE"
             });
         } catch (e) {
