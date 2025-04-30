@@ -1,8 +1,8 @@
 async function getStudents() {
   try {
-    return await fetch("http://localhost:3000/students").then((reponse) =>
-      reponse.json()
-    );
+    return await fetch(
+      "https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students"
+    ).then((reponse) => reponse.json());
   } catch (e) {
     return e;
   }
@@ -53,13 +53,16 @@ async function addStudent(e) {
   document.querySelector("#skills").value = "";
   document.querySelector("#email").value = "";
   try {
-    await fetch("http://localhost:3000/students", {
-      method: "POST",
-      body: JSON.stringify(student),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-    });
+    await fetch(
+      "https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students",
+      {
+        method: "POST",
+        body: JSON.stringify(student),
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }
+    );
   } catch (e) {
     return e;
   }
@@ -72,6 +75,7 @@ document
   .querySelector("#get-students-btn")
   .addEventListener("click", async () => {
     await getStudents().then((students) => {
+      console.log(students);
       renderStudents(students);
     });
   });
@@ -136,13 +140,16 @@ document.querySelector("#change-form").addEventListener("submit", async (e) => {
   document.querySelector("#change-skills").value = "";
   document.querySelector("#change-email").value = "";
   try {
-    await fetch(`http://localhost:3000/students/${changedUserId}`, {
-      method: "PUT",
-      body: JSON.stringify(student),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-    });
+    await fetch(
+      `https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students/${changedUserId}`,
+      {
+        method: "PUT",
+        body: JSON.stringify(student),
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }
+    );
   } catch (e) {
     return e;
   }
@@ -156,9 +163,12 @@ document.querySelector("tbody").addEventListener("click", async (e) => {
     const studentId =
       e.target.parentElement.parentElement.firstElementChild.textContent;
     try {
-      await fetch(`http://localhost:3000/students/${studentId}`, {
-        method: "DELETE",
-      });
+      await fetch(
+        `https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students/${studentId}`,
+        {
+          method: "DELETE",
+        }
+      );
     } catch (e) {
       return e;
     }

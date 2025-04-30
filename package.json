@@ -8,8 +8,7 @@
     "dev": "npx parcel src/index.html",
     "build": "parcel build src/index.html --public-url ./",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "server": "npx json-server students.json"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
