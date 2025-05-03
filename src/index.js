@@ -1,7 +1,7 @@
 async function getStudents() {
   try {
     return await fetch(
-      "https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students"
+      "https://6815f77332debfe95dbcf78b.mockapi.io/js-task-35/students"
     ).then((reponse) => reponse.json());
   } catch (e) {
     return e;
@@ -54,7 +54,7 @@ async function addStudent(e) {
   document.querySelector("#email").value = "";
   try {
     await fetch(
-      "https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students",
+      "https://6815f77332debfe95dbcf78b.mockapi.io/js-task-35/students",
       {
         method: "POST",
         body: JSON.stringify(student),
@@ -141,7 +141,7 @@ document.querySelector("#change-form").addEventListener("submit", async (e) => {
   document.querySelector("#change-email").value = "";
   try {
     await fetch(
-      `https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students/${changedUserId}`,
+      `https://6815f77332debfe95dbcf78b.mockapi.io/js-task-35/students/${changedUserId}`,
       {
         method: "PUT",
         body: JSON.stringify(student),
@@ -164,7 +164,7 @@ document.querySelector("tbody").addEventListener("click", async (e) => {
       e.target.parentElement.parentElement.firstElementChild.textContent;
     try {
       await fetch(
-        `https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students/${studentId}`,
+        `https://6815f77332debfe95dbcf78b.mockapi.io/js-task-35/students/${studentId}`,
         {
           method: "DELETE",
         }
