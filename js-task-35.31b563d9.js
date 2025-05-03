@@ -160,11 +160,11 @@
       });
     }
   }
-})({"5j6Kf":[function(require,module,exports,__globalThis) {
+})({"40idH":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 1234;
+var HMR_SERVER_PORT = 51368;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -669,7 +669,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"a0t4e":[function(require,module,exports,__globalThis) {
 async function getStudents() {
     try {
-        return await fetch("https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students").then((reponse)=>reponse.json());
+        return await fetch("https://6815f77332debfe95dbcf78b.mockapi.io/js-task-35/students").then((reponse)=>reponse.json());
     } catch (e) {
         return e;
     }
@@ -712,7 +712,7 @@ async function addStudent(e) {
     document.querySelector("#skills").value = "";
     document.querySelector("#email").value = "";
     try {
-        await fetch("https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students", {
+        await fetch("https://6815f77332debfe95dbcf78b.mockapi.io/js-task-35/students", {
             method: "POST",
             body: JSON.stringify(student),
             headers: {
@@ -775,7 +775,7 @@ document.querySelector("#change-form").addEventListener("submit", async (e)=>{
     document.querySelector("#change-skills").value = "";
     document.querySelector("#change-email").value = "";
     try {
-        await fetch(`https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students/${changedUserId}`, {
+        await fetch(`https://6815f77332debfe95dbcf78b.mockapi.io/js-task-35/students/${changedUserId}`, {
             method: "PUT",
             body: JSON.stringify(student),
             headers: {
@@ -793,7 +793,7 @@ document.querySelector("tbody").addEventListener("click", async (e)=>{
     if (e.target.classList.contains("delete-btn")) {
         const studentId = e.target.parentElement.parentElement.firstElementChild.textContent;
         try {
-            await fetch(`https://680dfecfc47cb8074d91bfc4.mockapi.io/mini-project/students/${studentId}`, {
+            await fetch(`https://6815f77332debfe95dbcf78b.mockapi.io/js-task-35/students/${studentId}`, {
                 method: "DELETE"
             });
         } catch (e) {
@@ -805,6 +805,6 @@ document.querySelector("tbody").addEventListener("click", async (e)=>{
     }
 });
 
-},{}]},["5j6Kf","a0t4e"], "a0t4e", "parcelRequired62e", {})
+},{}]},["40idH","a0t4e"], "a0t4e", "parcelRequired62e", {})
 
 //# sourceMappingURL=js-task-35.31b563d9.js.map
